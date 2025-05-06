@@ -10,23 +10,6 @@ const { execSync } = require('child_process');
 dotenv.config();
 const app = express();
 
-// Сборка Vue.js проекта перед запуском сервера
-function buildVueProject() {
-    try {
-        console.log('Building Vue.js project...');
-        execSync('npm run build', { stdio: 'inherit' });
-        console.log('Vue.js project built successfully');
-    } catch (error) {
-        console.error('Failed to build Vue.js project:', error);
-        process.exit(1);
-    }
-}
-
-// Вызываем сборку только в production, в development можно запускать отдельно
-if (process.env.NODE_ENV === 'production') {
-    buildVueProject();
-}
-
 // Настройка CORS - только для API в development
 if (process.env.NODE_ENV !== 'production') {
     app.use(cors({ origin: 'http://localhost:8000' }));
