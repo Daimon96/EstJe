@@ -1,0 +1,49 @@
+/* Стили для таблиц */
+.table-container {
+  @apply overflow-x-auto shadow-md rounded-lg;
+}
+
+.table {
+  @apply w-full text-left text-gray-700;
+}
+
+.table thead {
+  @apply bg-green-600 text-white;
+}
+
+.table th {
+  @apply px-6 py-4 font-medium;
+}
+
+.table tbody tr {
+  @apply bg-white border-b hover:bg-green-50 transition;
+}
+
+.table td {
+  @apply px-6 py-4;
+}
+
+.table-actions {
+  @apply flex space-x-2;
+}
+
+/* Стили для кнопок в таблице */
+.btn-table {
+  @apply px-3 py-1 rounded text-sm font-medium transition;
+}
+
+.btn-view {
+  @apply bg-green-500 text-white hover:bg-green-600;
+}
+
+.btn-edit {
+  @apply bg-yellow-500 text-white hover:bg-yellow-600;
+}
+
+.btn-delete {
+  @apply bg-red-500 text-white hover:bg-red-600;
+}
+
+.btn-add {
+  @apply bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition;
+}
