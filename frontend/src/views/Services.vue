@@ -1,4 +1,3 @@
-Daimon, [06.05.2025 15:47]
 <template>
     <div class="container mx-auto p-4">
         <div class="flex justify-between items-center mb-6">
