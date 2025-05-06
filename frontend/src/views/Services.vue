@@ -131,9 +131,9 @@
                         <input v-model="form.duration" type="text" placeholder="Продолжительность" class="border p-2 rounded" required />
                         <input v-model="form.category" type="text" placeholder="Категория" class="border p-2 rounded" required />
                         <select v-model="form.is_available" class="border p-2 rounded" required>
-                            <option :value="true">Доступно</option>
-                            <option :value="false">Недоступно</option>
-                        </select>
+    <option value="available">Доступно</option>
+    <option value="unavailable">Недоступно</option>
+</select>
                         <input v-model="form.technician" type="text" placeholder="Техник" class="border p-2 rounded" />
                         <input type="file" @change="handleFileChange" class="border p-2 rounded" />
                     </div>
@@ -154,7 +154,7 @@
                     <p><strong>Цена:</strong> {{ viewServiceData.price }}</p>
                     <p><strong>Продолжительность:</strong> {{ viewServiceData.duration }}</p>
                     <p><strong>Категория:</strong> {{ viewServiceData.category }}</p>
-                    <p><strong>Доступность:</strong> {{ viewServiceData.is_available ? 'Доступно' : 'Недоступно' }}</p>
+                    <p><strong>Доступность:</strong> {{ viewServiceData.is_available === 'available' ? 'Доступно' : 'Недоступно' }}</p>
                     <p><strong>Техник:</strong> {{ viewServiceData.technician || 'Не указано' }}</p>
                     <img :src="getImageUrl(viewServiceData.image)" alt="Service"
                         class="w-32 h-32 object-cover rounded" />
@@ -233,7 +233,7 @@ export default {
   formData.append('price', form.value.price.toString());
   formData.append('duration', form.value.duration);
   formData.append('category', form.value.category);
-  formData.append('is_available', form.value.is_available.toString());
+  formData.append('is_available', form.value.is_available);
   formData.append('technician', form.value.technician);
   
   if (file.value) {
