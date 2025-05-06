@@ -1,3 +1,4 @@
+Daimon, [06.05.2025 15:47]
 <template>
     <div class="container mx-auto p-4">
         <div class="flex justify-between items-center mb-6">
@@ -66,7 +67,9 @@
                                     class="btn-delete flex items-center"
                                 >
                                     <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+
+Daimon, [06.05.2025 15:47]
+<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
                                     </svg>
                                     Удалить
                                 </button>
@@ -131,9 +134,9 @@
                         <input v-model="form.duration" type="text" placeholder="Продолжительность" class="border p-2 rounded" required />
                         <input v-model="form.category" type="text" placeholder="Категория" class="border p-2 rounded" required />
                         <select v-model="form.is_available" class="border p-2 rounded" required>
-    <option value="available">Доступно</option>
-    <option value="unavailable">Недоступно</option>
-</select>
+                            <option :value="true">Доступно</option>
+                            <option :value="false">Недоступно</option>
+                        </select>
                         <input v-model="form.technician" type="text" placeholder="Техник" class="border p-2 rounded" />
                         <input type="file" @change="handleFileChange" class="border p-2 rounded" />
                     </div>
@@ -145,17 +148,19 @@
         </div>
         <!-- Модальное окно просмотра -->
         <div v-if="showView" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-            <div class="bg-white p-6 rounded max-w-lg w-full">
+
+Daimon, [06.05.2025 15:47]
+<div class="bg-white p-6 rounded max-w-lg w-full">
                 <h2 class="text-xl font-bold mb-4">Просмотр услуги</h2>
                 <div class="grid grid-cols-1 gap-4">
                     <p><strong>ID:</strong> {{ viewServiceData.id }}</p>
                     <p><strong>Название:</strong> {{ viewServiceData.title }}</p>
-                    <p><strong>Описание:</strong> {{ viewServiceData.description || 'Не указано' }}</p>
+                    <p><strong>Описание:</strong> {{ viewServiceData.description  'Не указано' }}</p>
                     <p><strong>Цена:</strong> {{ viewServiceData.price }}</p>
                     <p><strong>Продолжительность:</strong> {{ viewServiceData.duration }}</p>
                     <p><strong>Категория:</strong> {{ viewServiceData.category }}</p>
-                    <p><strong>Доступность:</strong> {{ viewServiceData.is_available === 'available' ? 'Доступно' : 'Недоступно' }}</p>
-                    <p><strong>Техник:</strong> {{ viewServiceData.technician || 'Не указано' }}</p>
+                    <p><strong>Доступность:</strong> {{ viewServiceData.is_available ? 'Доступно' : 'Недоступно' }}</p>
+                    <p><strong>Техник:</strong> {{ viewServiceData.technician  'Не указано' }}</p>
                     <img :src="getImageUrl(viewServiceData.image)" alt="Service"
                         class="w-32 h-32 object-cover rounded" />
                 </div>
@@ -218,7 +223,7 @@ export default {
 
         const fetchServices = async () => {
             try {
-                const response = await axios.get(`/api/services?page=${currentPage.value}&limit=${limit}`);
+                const response = await axios.get(/api/services?page=${currentPage.value}&limit=${limit});
                 services.value = response.data.services;
                 total.value = response.data.total;
             } catch (error) {
@@ -233,7 +238,7 @@ export default {
   formData.append('price', form.value.price.toString());
   formData.append('duration', form.value.duration);
   formData.append('category', form.value.category);
-  formData.append('is_available', form.value.is_available);
+  formData.append('is_available', form.value.is_available.toString());
   formData.append('technician', form.value.technician);
   
   if (file.value) {
@@ -243,9 +248,10 @@ export default {
     formData.append('image', form.value.image);
   }
 
-  try {
+Daimon, [06.05.2025 15:47]
+try {
     const url = form.value.id 
-      ? `/api/services/${form.value.id}`
+      ? /api/services/${form.value.id}
       : '/api/services';
     
     const method = form.value.id ? 'put' : 'post';
@@ -256,7 +262,7 @@ export default {
       data: formData,
       headers: {
         'Content-Type': 'multipart/form-data',
-        'Authorization': `Bearer ${localStorage.getItem('token')}` // Добавляем токен
+        'Authorization': Bearer ${localStorage.getItem('token')} // Добавляем токен
       }
     });
     
@@ -269,7 +275,7 @@ export default {
     if (error.response) {
       console.error('Response data:', error.response.data);
       console.error('Response status:', error.response.status);
-      alert(`Ошибка сохранения: ${error.response.data.error || error.message}`);
+      alert(Ошибка сохранения: ${error.response.data.error || error.message});
     } else {
       alert('Ошибка сети или сервера');
     }
@@ -285,7 +291,7 @@ export default {
         const deleteService = async (id) => {
             if (confirm('Удалить услугу?')) {
                 try {
-                    await axios.delete(`/api/services/${id}`);
+                    await axios.delete(/api/services/${id});
                     fetchServices();
                 } catch (error) {
                     console.error('Failed to delete service:', error);
@@ -319,7 +325,7 @@ export default {
         };
 
         const getImageUrl = (image) => {
-            return image ? `${image}` : '/images/placeholder.jpg';
+            return image ? ${image} : '/images/placeholder.jpg';
         };
 
         watch(currentPage, fetchServices, { immediate: true });
